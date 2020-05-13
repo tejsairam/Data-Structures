@@ -7,10 +7,19 @@
 
 
     ALgorithm would be build the root and recursively build left and right subtrees
+    
+    Depth First Traversals:
+(a) Inorder (Left, Root, Right) 
+(b) Preorder (Root, Left, Right) 
+(c) Postorder (Left, Right, Root) 
+
+
 
 */
 
-#include <iostream>
+
+  
+  #include <iostream>
 using namespace std;
 
 class node {
@@ -51,17 +60,17 @@ void printPost(node* root){
     if(root == NULL) return;
 
     printPost(root->left);
-    cout<<root->data<<" ";
-    
     printPost(root->right);
+    cout<<root->data<<" ";
 }
 
 void printIn(node* root){
     if(root == NULL) return;
 
     printIn(root->left);
-    printIn(root->right);
     cout<<root->data<<" ";
+    printIn(root->right);
+    
 }
 int main() {
     node* root = buildTree();
