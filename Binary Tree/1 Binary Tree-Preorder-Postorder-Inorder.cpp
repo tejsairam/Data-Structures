@@ -13,12 +13,12 @@
 #include <iostream>
 using namespace std;
 
-class node{
+class node {
     public:
         int data;
-        node*left;
-        node*right;
-    
+        node* left;
+        node* right;
+
     node(int d){
         data = d;
         left = NULL;
@@ -27,10 +27,10 @@ class node{
 };
 
 node* buildTree(){
-    //base case
     int d;
     cin>>d;
 
+    //base case
     if(d == -1) return NULL;
 
     node* root = new node(d);
@@ -39,19 +39,38 @@ node* buildTree(){
     return root;
 }
 
-void print(node *root){
-    if(root == NULL){
-        return;
-    }
+void print(node* root){
+    if(root == NULL) return;
 
-    //otherwise print root followed by subtrees
     cout<<root->data<<" ";
     print(root->left);
     print(root->right);
-
 }
 
+void printPost(node* root){
+    if(root == NULL) return;
+
+    printPost(root->left);
+    cout<<root->data<<" ";
+    
+    printPost(root->right);
+}
+
+void printIn(node* root){
+    if(root == NULL) return;
+
+    printIn(root->left);
+    printIn(root->right);
+    cout<<root->data<<" ";
+}
 int main() {
     node* root = buildTree();
     print(root);
+    cout<<endl;
+    
+    printPost(root);
+    cout<<endl;
+    
+    printIn(root);
+
 }
