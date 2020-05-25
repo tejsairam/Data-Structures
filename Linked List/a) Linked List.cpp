@@ -148,6 +148,29 @@ void deleteInMiddle(node*& head,int pos) {
     }
 }
 
+bool searchRecursive(node*& head,int key){
+    //base case
+    if(head == NULL) return false;
+
+    else if(head -> data == key) {
+        return true;
+    }
+    else{
+        return searchRecursive(head->next,key);
+    }
+}
+
+bool searchIterative(node*& head,int key){
+    if(head == NULL) return false;
+
+    node* temp = head;
+     while(temp != NULL){
+         if(temp -> data == key) return true;
+         temp = temp -> next;
+     }
+
+     return false;
+}
 int main(){
     node* head = NULL;
     insertAtHead(head,50);
@@ -175,4 +198,18 @@ int main(){
 
     deleteInMiddle(head,3);
     printLinkedList(head);
+
+    if(searchRecursive(head,20)){
+        cout<<"Element is present! "<< endl;
+    }
+    else{
+        cout<<"Element is not present" << endl;
+    }
+
+    if(searchIterative(head,10)){
+        cout<<"element is present" << endl;
+    }
+    else{
+        cout<<"element is not present" << endl;
+    }
 }
